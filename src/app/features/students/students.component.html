@@ -1,21 +1,15 @@
 <h2>Student List</h2>
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
   <!-- ID Column -->
-  <ng-container matColumnDef="id">
+  <!-- <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let student">{{ student.id }}</td>
-  </ng-container>
+  </ng-container> -->
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let student">{{ student.name }}</td>
-  </ng-container>
-
-  <!-- Level Column -->
-  <ng-container matColumnDef="level">
-    <th mat-header-cell *matHeaderCellDef>Level</th>
-    <td mat-cell *matCellDef="let student">{{ student.level }}</td>
   </ng-container>
 
   <!-- Department Column -->
@@ -24,18 +18,34 @@
     <td mat-cell *matCellDef="let student">{{ student.department }}</td>
   </ng-container>
 
+  <!-- Level Column -->
+  <ng-container matColumnDef="level">
+    <th mat-header-cell *matHeaderCellDef>Level</th>
+    <td mat-cell *matCellDef="let student">{{ student.level }}</td>
+  </ng-container>
+
   <!-- Email Column -->
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>Email</th>
     <td mat-cell *matCellDef="let student">{{ student.email }}</td>
   </ng-container>
 
-  <!-- Grade Column -->
-  <ng-container matColumnDef="grade">
-    <th mat-header-cell *matHeaderCellDef>Grade</th>
-    <td mat-cell *matCellDef="let student">{{ student.grade }}</td>
+    <!-- Card Column -->
+    <ng-container matColumnDef="card">
+      <th mat-header-cell *matHeaderCellDef>Card Number</th>
+      <td mat-cell *matCellDef="let student">{{ student.card }}</td>
+    </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let student">
+      <button mat-button (click)="updateStudent(student)">Edit</button>
+      <button mat-button (click)="deleteStudent(student._id)">Delete</button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<button mat-button (click)="openAddStudentModal()">Add Student</button>

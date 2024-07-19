@@ -1,8 +1,8 @@
 export interface Student {
-    id: number;
+    _id?: string;
     name: string;
     level: number;
     department: string;
     email: string;
-    grade?: string;
+    card: string;
 }

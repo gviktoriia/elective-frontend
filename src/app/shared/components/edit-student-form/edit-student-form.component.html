@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Edit Student</h1>
+<div mat-dialog-content>
+  <form #editStudentForm="ngForm" (ngSubmit)="onSubmit(editStudentForm)">
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput placeholder="Name" name="name" [(ngModel)]="data.student.name" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput placeholder="Department" name="department" [(ngModel)]="data.student.department" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput placeholder="Level" type="number" name="level" [(ngModel)]="data.student.level" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="data.student.email" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput placeholder="Card" name="card" [(ngModel)]="data.student.card" required />
+    </mat-form-field>
+    <div mat-dialog-actions align="center">
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-button type="button" (click)="onNoClick()">Cancel</button>
+    </div>
+  </form>
+</div>

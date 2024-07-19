@@ -1,0 +1,44 @@
+.full-width {
+    width: 100%;
+}
+  
+/* Center the form vertically and horizontally */
+mat-dialog-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+  
+  /* Flex container for the form */
+form.student-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+  
+  /* Full width for the form fields */
+mat-form-field.full-width {
+    width: 100%;
+}
+
+  
+mat-dialog-actions.dialog-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+  
+mat-dialog-actions.dialog-actions button {
+    margin: 0 10px;
+}
+
+
+  

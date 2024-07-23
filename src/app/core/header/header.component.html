@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
-  <span>My Application</span>
+  <span><a mat-button routerLink="/">UNI-SYS</a></span>
   <span class="spacer"></span>
   <a mat-button routerLink="/">Home</a>
   <a mat-button routerLink="/students">Students</a>
   <a mat-button routerLink="/electives">Electives</a>
+  <a mat-button (click)="logout()">Logout</a>
 </mat-toolbar>

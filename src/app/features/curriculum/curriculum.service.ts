@@ -1,28 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { Curriculum } from '../../models/curriculum.model';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Elective } from '../../models/elective.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurriculumService {
-  // private registrations: Curriculum[] = [
-  //   { id: 1, studentId: 1, electiveId: 1, scores: [85, 90], finalScore: 90 },
-  //   { id: 2, studentId: 2, electiveId: 2, scores: [75, 80], finalScore: 80 },
-  //   { id: 3, studentId: 3, electiveId: 3, scores: [95, 85], finalScore: 85 },
-  // ];
+  private apiUrl = 'http://localhost:3000';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  // getRegistrations(): Observable<Curriculum[]> {
-  //   return of(this.registrations);
-  // }
+  getCurriculums(): Observable<Curriculum[]> {
+    return this.http.get<Curriculum[]>(this.apiUrl);
+  }
 
-  // addScore(registrationId: number, score: number): void {
-  //   const registration = this.registrations.find(reg => reg.id === registrationId);
-  //   if (registration) {
-  //     registration.scores.push(score);
-  //     registration.finalScore = score; // Update the final score to the latest score
-  //   }
-  // }
+  getElectiveById(id: string): Observable<Elective> {
+    return this.http.get<Elective>(`${this.apiUrl}/electives/${id}`);
+  }
+
+  getStudentsByElective(electiveId: string): Observable<Curriculum[]> {
+    return this.http.get<Curriculum[]>(`${this.apiUrl}/curriculum?elective_id=${electiveId}`);
+  }
+
+
+  getElectiveStudentCounts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/curriculum/student-counts`);
+  }
+
+
 }

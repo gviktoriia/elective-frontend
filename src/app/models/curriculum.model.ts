@@ -1,7 +1,12 @@
+export interface Score {
+    score: number;
+    date: Date;
+}
+
 export interface Curriculum {
-    id: number;
-    studentId: number;
-    electiveId: number;
-    scores: number[];
-    finalScore: number;
+    _id?: string;
+    student_id: string;
+    elective_id: string;
+    scores: Score[];
+    final_score: number;
 }

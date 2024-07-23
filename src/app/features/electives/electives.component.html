@@ -1,10 +1,10 @@
 <h2>Elective List</h2>
 <table mat-table [dataSource]="electives" class="mat-elevation-z8">
   <!-- ID Column -->
-  <ng-container matColumnDef="id">
+  <!-- <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let elective">{{ elective.id }}</td>
-  </ng-container>
+  </ng-container> -->
 
   <!-- Name Column -->
   <ng-container matColumnDef="title">
@@ -35,31 +35,16 @@
     <td mat-cell *matCellDef="let elective">{{ elective.hours.tutorial }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let elective">
+      <button mat-button (click)="updateElective(elective)">Edit</button>
+      <button mat-button (click)="deleteElective(elective._id)">Delete</button>
+    </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<!-- <div>
-  <h2>Registrations</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Student</th>
-        <th>Elective</th>
-        <th>Scores</th>
-        <th>Final Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let curriculum of registrations">
-        <td>{{ students.find(s => s.id === curriculum.studentId)?.name }}</td>
-        <td>
-          {{ electives.find(e => e.id === curriculum.electiveId)?.title }}
-        </td>
-        <td>{{ curriculum.scores.join(", ") }}</td>
-        <td>{{ curriculum.finalScore }}</td>
-      </tr>
-    </tbody> 
-  </table>
-</div> -->
-
+<button mat-button (click)="openAddElectiveModal()">Add Elective</button>

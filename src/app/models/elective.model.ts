@@ -5,8 +5,8 @@ export interface Hours {
 }
 
 export interface Elective {
-    id: number;
+    _id?: string;
     title: string;
-    hours: Hours;
     duration: number;
+    hours: Hours;
 }

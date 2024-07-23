@@ -1,21 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Elective } from '../../models/elective.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElectiveService {
-  private electives: Elective[] = [
-    { id: 1, title: 'Advanced Mathematics', hours: { lecture: 3, lab: 1, tutorial: 1 }, duration: 2 },
-    { id: 2, title: 'Ukrainian Literature', hours: { lecture: 5, lab: 2, tutorial: 3 }, duration: 1 },
-    { id: 3, title: 'Physical Education', hours: { lecture: 0, lab: 4, tutorial: 2 }, duration: 1 },
+  private apiUrl = 'http://localhost:3000/electives';
 
-  ];
-
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   getElectives(): Observable<Elective[]> {
-    return of(this.electives);
+    return this.http.get<Elective[]>(this.apiUrl);
+  }
+
+  getElectiveById(id: string): Observable<Elective> {
+    return this.http.get<Elective>(`${this.apiUrl}/${id}`)
+  }
+
+  addElective(elective: Elective): Observable<Elective> {
+    return this.http.post<Elective>(this.apiUrl, elective);
+  }
+
+  updateElective(id: string, elective: Elective): Observable<Elective> {
+    return this.http.patch<Elective>(`${this.apiUrl}/${id}`, elective);
+  }       
+
+  deleteElective(id: any): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -7,8 +7,7 @@ import { StudentService } from './student.service';
 import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { AddStudentFormComponent } from '../../shared/components/add-student-form/add-student-form.component';
-import { EditStudentFormComponent } from '../../shared/components/edit-student-form/edit-student-form.component';
+import { StudentFormComponent } from '../../shared/components/student-form/student-form.component';
 
 @Component({
   selector: 'app-students',
@@ -38,8 +37,11 @@ export class StudentsComponent implements OnInit {
   }
 
   openAddStudentModal(): void {
-    const dialogRef = this.dialog.open(AddStudentFormComponent, {
-      width: '400px'
+    const dialogRef = this.dialog.open(StudentFormComponent, {
+      width: '400px',
+      data: {
+        mode: 'add'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -50,9 +52,9 @@ export class StudentsComponent implements OnInit {
   }
 
   updateStudent(student: Student): void {
-    const dialogRef = this.dialog.open(EditStudentFormComponent, {
+    const dialogRef = this.dialog.open(StudentFormComponent, {
       width: '400px',
-      data: {student}
+      data: {mode: 'edit', student}
     });
 
     dialogRef.afterClosed().subscribe(result => {

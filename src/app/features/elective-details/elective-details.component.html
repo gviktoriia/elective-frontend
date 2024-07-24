@@ -14,20 +14,39 @@
 
   <!-- Scores Column -->
   <ng-container matColumnDef="scores">
-    <th mat-header-cell *matHeaderCellDef>Scores</th>
+    <th mat-header-cell *matHeaderCellDef><p *ngIf="isAdmin">Scores</p></th>
     <td mat-cell *matCellDef="let student">
       <div *ngFor="let score of student.scores">
-        {{ score.score }}
+        <p *ngIf="isAdmin">{{ score.score }}</p>
       </div>
     </td>
   </ng-container>
 
   <!-- Final Score Column -->
   <ng-container matColumnDef="final_score">
-    <th mat-header-cell *matHeaderCellDef>Final Score</th>
-    <td mat-cell *matCellDef="let student">{{ student.final_score }}</td>
+    <th mat-header-cell *matHeaderCellDef>
+      <p *ngIf="isAdmin">Final Score</p>
+    </th>
+    <td mat-cell *matCellDef="let student">
+      <p *ngIf="isAdmin">{{ student.final_score }}</p>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef><p *ngIf="isAdmin">Actions</p></th>
+    <td mat-cell *matCellDef="let student">
+      <button
+        mat-button
+        *ngIf="isAdmin"
+        (click)="deleteCurriculum(student._id)"
+      >
+        Delete
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<button mat-button (click)="registerStudent()">Register</button>

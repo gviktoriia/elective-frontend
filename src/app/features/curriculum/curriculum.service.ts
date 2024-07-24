@@ -24,10 +24,22 @@ export class CurriculumService {
     return this.http.get<Curriculum[]>(`${this.apiUrl}/curriculum?elective_id=${electiveId}`);
   }
 
-
-  getElectiveStudentCounts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/curriculum/student-counts`);
+  createCurriculum(curriculum: Curriculum): Observable<Curriculum> {
+    return this.http.post<Curriculum>(`${this.apiUrl}/curriculum`, curriculum);
   }
+
+  updateCurriculum(id: string, curriculum: Curriculum): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/curriculum/${id}`, curriculum);
+  }
+
+  deleteCurriculum(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/curriculum/${id}`);
+  }
+
+
+  // getElectiveStudentCounts(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.apiUrl}/curriculum/student-counts`);
+  // }
 
 
 }

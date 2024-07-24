@@ -1,8 +1,18 @@
 <mat-toolbar color="primary">
   <span><a mat-button routerLink="/">UNI-SYS</a></span>
   <span class="spacer"></span>
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/students">Students</a>
-  <a mat-button routerLink="/electives">Electives</a>
-  <a mat-button (click)="logout()">Logout</a>
+  <a mat-button routerLink="/" *ngIf="isAuthorized$ | async">Home</a>
+  <a
+    mat-button
+    routerLink="/students"
+    *ngIf="(isAuthorized$ | async) && isAdmin"
+    >Students</a
+  >
+  <a
+    mat-button
+    routerLink="/electives"
+    *ngIf="(isAuthorized$ | async) && isAdmin"
+    >Electives</a
+  >
+  <a mat-button *ngIf="isAuthorized$ | async" (click)="logout()">Logout</a>
 </mat-toolbar>

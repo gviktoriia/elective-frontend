@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
   styleUrl: './curriculum.component.css'
 })
 export class CurriculumComponent {
-  displayedColumns: string[] = ['title', 'duration', 'students'];
+  displayedColumns: string[] = ['title', 'duration'];
   curriculum: Curriculum[] = [];
   elective: Elective[] = [];
   students: any[] = [];
@@ -32,7 +32,6 @@ export class CurriculumComponent {
 
   ngOnInit(): void {
     this.getElectivesList();
-    this.fetchElectiveStudentCounts();
   }
 
   getElectivesList(): void {
@@ -53,16 +52,16 @@ export class CurriculumComponent {
     this.router.navigate(['/elective', elective._id])
   }
 
-  fetchElectiveStudentCounts(): void {
-    this.curriculumService.getElectiveStudentCounts().subscribe(
-      (data) => {
-        // Format data if necessary
-        this.students = data;
-      },
-      (error) => {
-        console.error('Error fetching student counts:', error);
-      }
-    );
-  }
+  // fetchElectiveStudentCounts(): void {
+  //   this.curriculumService.getElectiveStudentCounts().subscribe(
+  //     (data) => {
+  //       // Format data if necessary
+  //       this.students = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching student counts:', error);
+  //     }
+  //   );
+  // }
 
 }
